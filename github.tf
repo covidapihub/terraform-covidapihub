@@ -6,6 +6,7 @@ module "github" {
     "kaitmore",
     "dontlaugh",
     "hiromis",
+    "justincely",
   ]
 
   members = [
