@@ -21,4 +21,6 @@ module "infra_network" {
   source       = "./modules/network"
   network_name = "infra"
   vpc_cidr     = "10.3.0.0/16"
+  # Disable NAT while we clean up other EIPs (NAT Gateways require an EIP)
+  nat_gateway = 0
 }
