@@ -19,6 +19,6 @@ module "dev2_network" {
 
 module "infra_network" {
   source       = "./modules/network"
-  network_name = "dev2"
+  network_name = "infra"
   vpc_cidr     = "10.3.0.0/16"
 }
