@@ -31,8 +31,3 @@ module "peer_infra_dev1" {
   to_vpc   = module.dev1_network.vpc_id
 }
 
-module "peer_dev1_infra" {
-  source   = "./modules/peering_relationship"
-  from_vpc = module.dev1_network.vpc_id
-  to_vpc   = module.infra_network.vpc_id
-}
