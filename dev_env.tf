@@ -22,7 +22,7 @@ module "infra_network" {
   network_name = "infra"
   vpc_cidr     = "10.3.0.0/16"
   # Disable NAT while we clean up other EIPs (NAT Gateways require an EIP)
-  nat_gateway = 0
+  nat_gateway = 1
 }
 
 module "peer_infra_dev1" {
@@ -31,3 +31,11 @@ module "peer_infra_dev1" {
   to_vpc   = module.dev1_network.vpc_id
 }
 
+# NOTE(cm): Test invocation of standalone elasticache_redis module
+# Delete after peering connectivity test is over
+module "redis_test" {
+  source = "./modules/elasticache_redis"
+  name = "infra-test"
+  allowed_cidrs = [module.dev1_network.vpc_cidr, module.infra_network.vpc_cidr]
+  subnet_ids = module.infra_network.private_subnet_ids
+}
